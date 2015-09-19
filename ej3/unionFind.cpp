@@ -1,7 +1,6 @@
 #include "unionFind.h"
-using namespace std;
 
-UnionFind::UnionFind(unsigned int n)
+UnionFind::UnionFind(const unsigned int n)
 {
  // vector<Lista*> conjunto(n);
  // for (int i = 0; i < n; ++i) {
@@ -12,19 +11,19 @@ UnionFind::UnionFind(unsigned int n)
 
 } 
 
-unsigned int UnionFind::encontrarRep(unsigned int x)
+unsigned int UnionFind::encontrarRep(const unsigned int x)
 {
   return representantes[x] ;  
 } 
 
 
 
-void UnionFind::unir(unsigned int x, unsigned int y)
+void UnionFind::unir(const unsigned int x, const unsigned int y)
 {
     
 } 
 
-bool UnionFind::mismoRep(unsigned int x, unsigned int y)
+bool UnionFind::mismoRep(const unsigned int x, const unsigned int y)
 {
   unsigned int aux1 = encontrarRep(x);
   unsigned int aux2 = encontrarRep(y);
@@ -34,10 +33,4 @@ bool UnionFind::mismoRep(unsigned int x, unsigned int y)
 void UnionFind::link(UnionFind f, UnionFind u){
     
   
-}
-
-int main() 
-{
-
-  return 0;  
 }

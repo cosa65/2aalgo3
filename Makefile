@@ -17,11 +17,9 @@ ej1: ej1/ej1.cpp
 #ej2: ej2/mediana.cpp
 #	$(CC) ej2/mediana.cpp $(CFLAGS) exj2
 #
-#ej3: ej3/ej3.cpp
-#	$(CC) ej3/ej3.cpp $(CFLAGS) exj3
-#
-#ronda: ej3/ronda.h
-#	$(CC) ej3/ronda.h $(CFLAGS) ronda 
+ej3: ej3/ej3.cpp ej3/unionFind.cpp
+	$(CC) ej3/ej3.cpp $(CFLAGS) exj3
+#	$(CC) ej3/unionFind.cpp $(CFLAGS) union 
 
 clean:
 	rm -f ej1/*.o exj1

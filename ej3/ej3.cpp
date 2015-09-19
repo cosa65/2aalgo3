@@ -1,9 +1,7 @@
-#include "unionFind.h"
+#include "unionFind.cpp"
 #include <queue>
 #include <set>
 #include <iostream>
-
-using namespace std;
 
 typedef unsigned int Vertice; //no se que ondis esto
 
@@ -11,13 +9,13 @@ class Arista {
   
   public:
     
-    Arista();
+    Arista() {};
     Arista(unsigned int vertice1, unsigned int vertice2, int p) : v1(vertice1), v2(vertice2), peso(p) {};
-    int damePeso() {return peso;}
-    unsigned int vertice1() {return v1;}
-    unsigned int vertice2() {return v2;}
+    int damePeso() const {return peso;}
+    unsigned int vertice1() const {return v1;}
+    unsigned int vertice2() const {return v2;}
 
-    bool operator>(Arista &a) {
+    bool operator>(const Arista a) const {
       bool res;
       if (damePeso() != a.damePeso()){
         res = damePeso() > a.damePeso();
@@ -54,7 +52,7 @@ class Arista {
 unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   unsigned int res;
 
-  priority_queue<Arista, vector<Arista>, greater<Arista> > maxAristas;
+  priority_queue<Arista, vector<Arista>, greater<Arista>> maxAristas;
   for (set<Arista>::iterator it = aristas.begin(); it != aristas.end(); ++it){ //guardo las aristas en un maxHeap segun su peso
     maxAristas.push(*it);
   }
@@ -76,4 +74,9 @@ unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
 
   return res;
 
+}
+
+int main() {
+
+  return 0;
 }
