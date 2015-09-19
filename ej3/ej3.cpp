@@ -1,10 +1,10 @@
 #include "unionFind.cpp"
-#include "arista.cpp"
+//#include "arista.cpp"
 #include <queue>
 #include <set>
 #include <iostream>
 
-typedef unsigned int Vertice; //no se que ondis esto
+//typedef unsigned int Vertice; //no se que ondis esto
 
 //class Grafo {
 //

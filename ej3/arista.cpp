@@ -2,7 +2,7 @@
 
 Arista::Arista(){}
 
-Arista::Arista(unsigned int vertice1, unsigned int vertice2, int p){
+Arista::Arista(Vertice vertice1, Vertice vertice2, int p){
   v1 = vertice1;
   v2 = vertice2;
   peso = p;
@@ -12,11 +12,11 @@ int Arista::damePeso(){
   return peso;
 }
 
-unsigned int Arista::vertice1(){
+Vertice Arista::vertice1(){
   return v1;
 }
 
-unsigned int Arista::vertice2(){
+Vertice Arista::vertice2(){
   return v2;
 }
 

@@ -14,14 +14,14 @@ UnionFind::UnionFind(unsigned int n)
   }
 } 
 
-unsigned int UnionFind::encontrarRep(unsigned int x)
+Vertice UnionFind::encontrarRep(Vertice x)
 {
   return representantes[x] ;  
 } 
 
 
 
-void UnionFind::unir(unsigned int x, unsigned int y)
+void UnionFind::unir(Vertice x, Vertice y)
 {
   Conjunto* c1 = conjuntos[representantes[x]];
   Conjunto* c2 = conjuntos[representantes[y]];
@@ -35,10 +35,10 @@ void UnionFind::unir(unsigned int x, unsigned int y)
   link(c1, c2);    
 } 
 
-bool UnionFind::mismoRep(unsigned int x, unsigned int y)
+bool UnionFind::mismoRep(Vertice x, Vertice y)
 {
-  unsigned int aux1 = encontrarRep(x);
-  unsigned int aux2 = encontrarRep(y);
+  Vertice aux1 = encontrarRep(x);
+  Vertice aux2 = encontrarRep(y);
   return aux1 == aux2;
 }
 

@@ -1,21 +1,23 @@
 using namespace std;
 
+typedef unsigned int Vertice;
+
 class Arista {
   
   public:
     
     Arista();
-    Arista(unsigned int, unsigned int, int); 
+    Arista(Vertice, Vertice, int); 
     int damePeso(); 
-    unsigned int vertice1();
-    unsigned int vertice2(); 
+    Vertice vertice1();
+    Vertice vertice2(); 
 
     bool operator <(Arista a) const;
     bool operator >(Arista a) const;
 
   private:
     
-    unsigned int v1, v2;
+    Vertice v1, v2;
     int peso;
 
 };
