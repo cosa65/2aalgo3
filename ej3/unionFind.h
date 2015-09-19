@@ -1,4 +1,5 @@
 #include <vector>
+#include <cstddef>
 
 using namespace std;
 
@@ -13,23 +14,25 @@ class UnionFind {
 
   private:
   
-  void link(UnionFind, UnionFind);
+  struct Conjunto;
+  void link(Conjunto*, Conjunto*);
     
-  struct Lista;
     struct Nodo {
-           
-      Lista* set;
+         
+      unsigned int dato;
+      Conjunto* set;
       Nodo* siguiente;
-    
+      
+      Nodo(unsigned int d) : dato(d), set(NULL), siguiente(NULL) {}; 
     };
-    struct Lista {
+    struct Conjunto {
       Nodo* primero;
       Nodo* ultimo;
-      unsigned int longitud;
-      Lista() : primero(NULL), ultimo(NULL), longitud(0) {};  
+      unsigned int cardinal;
+      Conjunto() : primero(NULL), ultimo(NULL), cardinal(0) {};  
     };
 
-  vector<Lista*> conjunto;
+  vector<Conjunto*> conjuntos; //indexado por representantes
   vector<unsigned int> representantes;
  // vector<unsigned int> representantes;
  // vector<Nodo*> conjuntos;

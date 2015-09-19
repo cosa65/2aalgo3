@@ -49,10 +49,11 @@ class Arista {
 //}
 
 
+
 unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   unsigned int res;
 
-  priority_queue<Arista, vector<Arista>, greater<Arista>> maxAristas;
+  priority_queue<Arista, vector<Arista>, greater<Arista> > maxAristas;
   for (set<Arista>::iterator it = aristas.begin(); it != aristas.end(); ++it){ //guardo las aristas en un maxHeap segun su peso
     maxAristas.push(*it);
   }
@@ -62,7 +63,7 @@ unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   Arista auxArista;
   for (int i = 0; i < maxAristas.size(); ++i){ //recorro todas las aristas
     auxArista = maxAristas.top();
-    if (uf.encontrarRep(auxArista.vertice1()) == uf.encontrarRep(auxArista.vertice2())){
+    if (uf.mismoRep(auxArista.vertice1(), auxArista.vertice2())){
     //si los representantes son iguales, entonces es un peso que tengo que añadir a la suma minima
       res += auxArista.damePeso();
     } else {
@@ -73,10 +74,33 @@ unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   }
 
   return res;
-
 }
 
+//void evaluarTest(string fIn, string fOut, string fWrite){
+//  
+//
+//}
+
 int main() {
+ // string fileIn(argv[1]);
+ // string fileOut(argv[2]);
+ // string fileWrite(argv[3]);
+ // evaluarTests(fileIn, fileOut, fileWrite);
+ // const Arista a1 = Arista(0,1,3);
+ // const Arista a2 = Arista(1,2,3);
+ // const Arista a3 = Arista(2,0,3);
+ // set<const Arista> aristas;
+ // aristas.insert(a1);
+ // aristas.insert(a2);
+ // aristas.insert(a3);
+
+ // set<Vertice> vertices;
+ // vertices.insert(0);
+ // vertices.insert(1);
+ // vertices.insert(2);
+
+ // unsigned int res = sumaMinima(aristas,vertices);
+ // cout << "hare" << res << endl;
 
   return 0;
 }
