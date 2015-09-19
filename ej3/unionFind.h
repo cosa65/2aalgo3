@@ -1,12 +1,8 @@
 #include <vector>
 
-
-
 using namespace std;
 
-
 class UnionFind {
-
   
   public:
     
@@ -27,13 +23,10 @@ class UnionFind {
     
     };
     struct Lista {
-
-    Lista() : primero(nullptr), ultimo(nullptr), longitud(0) {};  
-    Nodo* primero;
-    Nodo* ultimo;
-    unsigned int longitud;
-
-
+      Nodo* primero;
+      Nodo* ultimo;
+      unsigned int longitud;
+      Lista() : primero(NULL), ultimo(NULL), longitud(0) {};  
     };
 
   vector<Lista*> conjunto;
