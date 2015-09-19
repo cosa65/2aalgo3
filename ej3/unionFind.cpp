@@ -1,13 +1,14 @@
 #include "unionFind.h"
+using namespace std;
 
 UnionFind::UnionFind(unsigned int n)
 {
-  std::vector conjunto(n);
-  for (int i = 0; i < n, ++i) {
-    conjunto[i] = i;
-    Lista* l = new Lista();
+ // vector<Lista*> conjunto(n);
+ // for (int i = 0; i < n; ++i) {
+ //   conjunto[i] = i;
+ //   Lista* l = new Lista();
     
-  }
+ // }
 
 } 
 
@@ -18,7 +19,7 @@ unsigned int UnionFind::encontrarRep(unsigned int x)
 
 
 
-void UnionFind::unir(int x, int y)
+void UnionFind::unir(unsigned int x, unsigned int y)
 {
     
 } 
@@ -30,7 +31,7 @@ bool UnionFind::mismoRep(unsigned int x, unsigned int y)
   return x == y;
 }
 
-void UnionFind::link(){
+void UnionFind::link(UnionFind f, UnionFind u){
     
   
 }
