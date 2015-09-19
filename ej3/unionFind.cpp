@@ -1,11 +1,17 @@
 #include "unionFind.h"
 
-void UnionFind::crearConj(int x)
+UnionFind::UnionFind(unsigned int n)
 {
-  
+  std::vector conjunto(n);
+  for (int i = 0; i < n, ++i) {
+    conjunto[i] = i;
+    Lista* l = new Lista();
+    
+  }
+
 } 
 
-int UnionFind::encontrarRep(int x)
+unsigned int UnionFind::encontrarRep(unsigned int x)
 {
   return representantes[x] ;  
 } 
