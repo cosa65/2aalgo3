@@ -1,41 +1,10 @@
 #include "unionFind.cpp"
+#include "arista.cpp"
 #include <queue>
 #include <set>
 #include <iostream>
 
 typedef unsigned int Vertice; //no se que ondis esto
-
-class Arista {
-  
-  public:
-    
-    Arista() {};
-    Arista(unsigned int vertice1, unsigned int vertice2, int p) : v1(vertice1), v2(vertice2), peso(p) {};
-    int damePeso() const {return peso;}
-    unsigned int vertice1() const {return v1;}
-    unsigned int vertice2() const {return v2;}
-
-    bool operator>(const Arista a) const {
-      bool res;
-      if (damePeso() != a.damePeso()){
-        res = damePeso() > a.damePeso();
-      } else {
-        if (v1 != a.vertice1()){
-          res = v1 > a.vertice1();
-        } else {
-          res = v2 > a.vertice2();
-        }
-      }
-      return res;
-    }
-
-  private:
-    
-    unsigned int v1, v2;
-    int peso;
-
-};
-
 
 //class Grafo {
 //
@@ -49,11 +18,12 @@ class Arista {
 //}
 
 
-
+//esto deberia recibir un grafo guachina
 unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
-  unsigned int res;
+  unsigned int res = 0;
 
   priority_queue<Arista, vector<Arista>, greater<Arista> > maxAristas;
+//  priority_queue<Arista> maxAristas;
   for (set<Arista>::iterator it = aristas.begin(); it != aristas.end(); ++it){ //guardo las aristas en un maxHeap segun su peso
     maxAristas.push(*it);
   }
@@ -61,7 +31,8 @@ unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   //aca deberia crear un unioun find
   UnionFind uf(vertices.size());
   Arista auxArista;
-  for (int i = 0; i < maxAristas.size(); ++i){ //recorro todas las aristas
+  int size = maxAristas.size();
+  for (int i = 0; i < size; ++i){ //recorro todas las aristas
     auxArista = maxAristas.top();
     if (uf.mismoRep(auxArista.vertice1(), auxArista.vertice2())){
     //si los representantes son iguales, entonces es un peso que tengo que añadir a la suma minima
@@ -86,21 +57,50 @@ int main() {
  // string fileOut(argv[2]);
  // string fileWrite(argv[3]);
  // evaluarTests(fileIn, fileOut, fileWrite);
- // const Arista a1 = Arista(0,1,3);
- // const Arista a2 = Arista(1,2,3);
- // const Arista a3 = Arista(2,0,3);
- // set<const Arista> aristas;
- // aristas.insert(a1);
- // aristas.insert(a2);
- // aristas.insert(a3);
+  Arista a1 = Arista(0,1,3);
+  Arista a2 = Arista(1,2,3);
+  Arista a3 = Arista(2,0,3);
+  set<Arista> aristas;
+  aristas.insert(a1);
+  aristas.insert(a2);
+  aristas.insert(a3);
 
- // set<Vertice> vertices;
- // vertices.insert(0);
- // vertices.insert(1);
- // vertices.insert(2);
+  set<Vertice> vertices;
+  vertices.insert(0);
+  vertices.insert(1);
+  vertices.insert(2);
 
- // unsigned int res = sumaMinima(aristas,vertices);
- // cout << "hare" << res << endl;
+  unsigned int res = sumaMinima(aristas,vertices);
+  cout << "hare " << res << endl;
+
+  Arista b1 = Arista(0,1,8);
+  Arista b2 = Arista(0,4,70);
+  Arista b3 = Arista(0,3,63);
+  Arista b4 = Arista(1,2,53);
+  Arista b5 = Arista(1,4,54);
+  Arista b6 = Arista(2,3,10);
+  Arista b7 = Arista(2,4,12);
+  Arista b8 = Arista(3,4,22);
+
+  set<Arista> aristas2;
+  aristas2.insert(b1);
+  aristas2.insert(b2);
+  aristas2.insert(b3);
+  aristas2.insert(b4);
+  aristas2.insert(b5);
+  aristas2.insert(b6);
+  aristas2.insert(b7);
+  aristas2.insert(b8);
+
+  set<Vertice> vertices2;
+  vertices2.insert(0);
+  vertices2.insert(1);
+  vertices2.insert(2);
+  vertices2.insert(3);
+  vertices2.insert(4);
+
+  unsigned int res2 = sumaMinima(aristas2, vertices2);
+  cout << "hare2 " << res2 << endl;
 
   return 0;
 }
