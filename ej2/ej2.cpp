@@ -17,7 +17,7 @@ void ejercicio2(string input, string fileOut){
 
 	int P = (length-3)/8;								//Magia
 
-	pabellon.rgrafo(pisos,L,P);
+	pabellon.rgrafo(pisos,L+1,P);
 
 	while(getline(fileInput, line, ';')){
 		istringstream iss(line);

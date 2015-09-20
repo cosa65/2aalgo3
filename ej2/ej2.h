@@ -85,7 +85,7 @@ void grafo::rgrafo(int pisos, int L, int P){
 		piso=i/L;
 
 		nodos[i].rnodo(piso,0,L);				//Defino los vertices bordes de los pasillos (casos borde)
-		lista[i].push_back(&nodos[i+1]);		
+		lista[i].push_back(&nodos[i+L-1]);		
 		nodos[i+L-1].rnodo(piso,L-1,L);
 		lista[i+L-1].push_back(&nodos[i+L-2]);
 
