@@ -4,19 +4,24 @@
 #include <fstream>
 #include <list>
 #include <vector>
+#include <queue>
+#include <limits>
 
 using namespace std;
 
 enum color {blanco,negro,gris};
+enum {inf = std::numeric_limits<int>::max() };
 
 class grafo{
 public:
+	class nodo; //FwD
 	grafo();
 	void rgrafo(int, int, int);
 	void insertarPort(int pisoDe,int posDe,int pisoA,int posA);
 	void printList(int i);
 	void printL(int i);
 	void printGraf();
+	void bfs( nodo* s );
 
 	class nodo{
 	public:
@@ -28,17 +33,24 @@ public:
 		nodo *padre();
 		color col();
 		void printNod();
+
 		nodo& operator=(nodo otro){
 			_num=otro._num;
 			_padre=otro._padre;
 			_col=otro._col;
+			_dist= otro._dist;
+
+			return *this;
 		}
+
 		int _num;
-		nodo *_padre;
+		nodo* _padre;
 		color _col;
+		int _dist;
 	};
+
+	vector<nodo> nodos;		//Puse esto en public para poder acceder desde bfs
 private:
-	vector<nodo> nodos;
 	vector< list<nodo*> > lista;
 	int _pisos;
 	int _L;
@@ -69,8 +81,10 @@ void grafo::nodo::printNod(){
 	cout << _num;
 }
 
-grafo::grafo(){
-};
+grafo::grafo()
+{
+
+}
 
 void grafo::rgrafo(int pisos, int L, int P){
 	_pisos=pisos;
@@ -135,4 +149,41 @@ void grafo::insertarPort(int pisoDe,int posDe,int pisoA,int posA){
 	nueva.push_back(&nodos[pisoDe*_L + posDe]);
 	nueva.push_back(&nodos[pisoA*_L + posA]);
 	lista[pos] = nueva;
+}
+
+void grafo::bfs( grafo::nodo* s )
+{
+	
+	for (nodo& v: nodos)
+	{
+		v._col = blanco;
+		v._dist = inf;
+		v._padre = nullptr;
+	}
+
+	s->_col = negro;
+	s->_dist = 0;
+	s->_padre = nullptr;
+
+	std::queue<nodo*> cola;
+	cola.push(s);
+
+	while (!cola.empty())
+	{
+		nodo* v = cola.front();
+		cola.pop();
+
+		for (nodo* w: lista[v->_num])
+		{
+			if (w->_col == blanco)
+			{
+				w->_col = negro;
+				w->_dist = v->_dist + 1;
+				cola.push(w);
+			}
+
+
+		}
+	}
+
 }
