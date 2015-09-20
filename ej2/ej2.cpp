@@ -15,7 +15,7 @@ void ejercicio2(string input, string fileOut){
 
 	int pisoDe,posDe,pisoA,posA;
 
-	int P = (length-3)/8;								//Magia
+	int P = (length-3)/8;								//Magia		//Dude, wtf
 
 	pabellon.rgrafo(pisos,L+1,P);
 
@@ -25,11 +25,18 @@ void ejercicio2(string input, string fileOut){
 		pabellon.insertarPort(pisoDe, posDe, pisoA, posA);
 	}
 	pabellon.printGraf();
+
+	pabellon.bfs(&pabellon.nodos[0]); //Corro BFS desde la raiz
+	int d = pabellon.nodos.back()._dist;	//Pregunto la distancia al último nodo (que es el último portal, hay que arreglarlo cuando no sean las 3.30am, para que pregunte por el último piso)
+	cout << d << endl;
+
+	FILE* out; out = fopen(fileOut.c_str(),"w");
+	fprintf(out, "%d\n", d);
 }
 
-int main(int argc, char **argv){
+int main(int , char **argv)
+{
 	string fileInput(argv[1]);
 	string fileOut(argv[2]);
 	ejercicio2(fileInput, fileOut);
-	return 0;
 }
