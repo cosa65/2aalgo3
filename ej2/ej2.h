@@ -10,7 +10,7 @@
 using namespace std;
 
 enum color {blanco,negro,gris};
-enum {inf = std::numeric_limits<int>::max() };
+enum {inf = numeric_limits<int>::max() };
 
 class grafo{
 public:
@@ -21,7 +21,8 @@ public:
 	void printList(int i);
 	void printL(int i);
 	void printGraf();
-	void bfs( nodo* s );
+	int distObj();
+	void bfs( int init );
 
 	class nodo{
 	public:
@@ -49,8 +50,8 @@ public:
 		int _dist;
 	};
 
-	vector<nodo> nodos;		//Puse esto en public para poder acceder desde bfs
 private:
+	vector<nodo> nodos;		//Puse esto en public para poder acceder desde bfs
 	vector< list<nodo*> > lista;
 	int _pisos;
 	int _L;
@@ -151,9 +152,13 @@ void grafo::insertarPort(int pisoDe,int posDe,int pisoA,int posA){
 	lista[pos] = nueva;
 }
 
-void grafo::bfs( grafo::nodo* s )
+int grafo::distObj(){
+	return nodos[nodos.size()-_P-1]._dist;
+}
+
+void grafo::bfs( int init )
 {
-	
+	nodo *s = &nodos[init];
 	for (nodo& v: nodos)
 	{
 		v._col = blanco;

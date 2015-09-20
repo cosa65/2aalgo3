@@ -26,12 +26,15 @@ void ejercicio2(string input, string fileOut){
 	}
 	pabellon.printGraf();
 
-	pabellon.bfs(&pabellon.nodos[0]); //Corro BFS desde la raiz
-	int d = pabellon.nodos.back()._dist;	//Pregunto la distancia al último nodo (que es el último portal, hay que arreglarlo cuando no sean las 3.30am, para que pregunte por el último piso)
+	pabellon.bfs(0); //Corro BFS desde la raiz
+	int d = pabellon.distObj();	//Pregunto la distancia al último nodo, el objetivo
 	cout << d << endl;
 
-	FILE* out; out = fopen(fileOut.c_str(),"w");
-	fprintf(out, "%d\n", d);
+	ofstream out(fileOut.c_str());
+	out << d;
+
+	//FILE* out; out = fopen(fileOut.c_str(),"w");
+	//fprintf(out, "%d\n", d);
 }
 
 int main(int , char **argv)
