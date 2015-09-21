@@ -1,34 +1,25 @@
 #include "unionFind.cpp"
 //#include "arista.cpp"
 #include <queue>
+//#include "grafo.cpp"
 #include <set>
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
-
-//typedef unsigned int Vertice; //no se que ondis esto
-
-//class Grafo {
-//
-//  private:
-//    set<Vertice> vertices;
-//    set<Arista> aristas; //invariante: todos los vertices de las aristas tienen que estar incluidos e vertices
-//
-//  public:
-//
-//
-//}
-
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <sys/time.h>
 
 //esto deberia recibir un grafo guachina
 unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   unsigned int res = 0;
 
   priority_queue<Arista, vector<Arista>, greater<Arista> > maxAristas;
-//  priority_queue<Arista> maxAristas;
   for (set<Arista>::iterator it = aristas.begin(); it != aristas.end(); ++it){ //guardo las aristas en un maxHeap segun su peso
     maxAristas.push(*it);
   }
 
-  //aca deberia crear un unioun find
   UnionFind uf(vertices.size());
   Arista auxArista;
   int size = maxAristas.size();
@@ -39,7 +30,7 @@ unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
       res += auxArista.damePeso();
     } else {
     //si no son iguales, tengo que agregar la arista y unir a los arboles
-      uf.unir(auxArista.vertice1(),auxArista.vertice2()); //uno las dos componentes conexas
+      uf.unir(auxArista.vertice1(), auxArista.vertice2()); //uno las dos componentes conexas
     }
     maxAristas.pop(); //desencolo la arista que acabo de analizar
   }
@@ -47,60 +38,59 @@ unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
   return res;
 }
 
-//void evaluarTest(string fIn, string fOut, string fWrite){
-//  
-//
-//}
+void evaluarTests(string fIn, string fOut/*, string fWrite*/){
+  ifstream fileData (fIn.c_str());
+  ifstream fileResult (fOut.c_str());
+  //ifstream fileWrite (fWrite.c_str());
+  string line;
+  string s;
+ 
+  Vertice v1;
+  Vertice v2;
+  int peso;
+  Arista a;
 
-int main() {
- // string fileIn(argv[1]);
- // string fileOut(argv[2]);
- // string fileWrite(argv[3]);
- // evaluarTests(fileIn, fileOut, fileWrite);
-  Arista a1 = Arista(0,1,3);
-  Arista a2 = Arista(1,2,3);
-  Arista a3 = Arista(2,0,3);
-  set<Arista> aristas;
-  aristas.insert(a1);
-  aristas.insert(a2);
-  aristas.insert(a3);
+  int resEsperado;
+  unsigned int numTest = 1;
 
-  set<Vertice> vertices;
-  vertices.insert(0);
-  vertices.insert(1);
-  vertices.insert(2);
+  while (getline (fileData, line)){ //toma una linea del input
+    istringstream iss(line); //inicializa una linea auxiliar con la anterior
 
-  unsigned int res = sumaMinima(aristas,vertices);
-  cout << "hare " << res << endl;
+    set<Arista> aristas;
+    set<Vertice> vertices;
 
-  Arista b1 = Arista(0,1,8);
-  Arista b2 = Arista(0,4,70);
-  Arista b3 = Arista(0,3,63);
-  Arista b4 = Arista(1,2,53);
-  Arista b5 = Arista(1,4,54);
-  Arista b6 = Arista(2,3,10);
-  Arista b7 = Arista(2,4,12);
-  Arista b8 = Arista(3,4,22);
+    while (getline (iss, s, ';')){ //pone en s los valores hasta el caracter ";"
+      istringstream is(s); //inicializa un auxiliar con los valores que leyo en la anterior
+      is >> v1; //guarda primer valor en v1 y mueve puntero
+      is >> v2;
+      is >> peso;
+      a = Arista(v1, v2, peso); 
+      aristas.insert(a);
+      vertices.insert(v1);
+      vertices.insert(v2);
+    }
 
-  set<Arista> aristas2;
-  aristas2.insert(b1);
-  aristas2.insert(b2);
-  aristas2.insert(b3);
-  aristas2.insert(b4);
-  aristas2.insert(b5);
-  aristas2.insert(b6);
-  aristas2.insert(b7);
-  aristas2.insert(b8);
+    unsigned int res = sumaMinima(aristas, vertices);
 
-  set<Vertice> vertices2;
-  vertices2.insert(0);
-  vertices2.insert(1);
-  vertices2.insert(2);
-  vertices2.insert(3);
-  vertices2.insert(4);
+    getline (fileResult, line);
+    resEsperado = atoi(line.c_str());
 
-  unsigned int res2 = sumaMinima(aristas2, vertices2);
-  cout << "hare2 " << res2 << endl;
+    if (res == resEsperado){
+      cout << "Pasó el test " << numTest << ". La suma mínima es: " << res << endl; 
+    } else {
+      cout << "Falló el test" << numTest << ". Obtuve " << res << "debería tener " << resEsperado << endl;
+    }
+    numTest++;
+  }
+}
 
+int main(int argc, char** argv) {
+ 
+  string fileIn(argv[1]);
+  string fileOut(argv[2]);
+  // string fileWrite(argv[3]);
+ 
+  evaluarTests(fileIn, fileOut);
+ 
   return 0;
 }
