@@ -3,35 +3,43 @@
 void ejercicio2(string input, string fileOut){
 	string line;
 	ifstream fileInput(input.c_str());
-    fileInput.seekg (0, fileInput.end);
-    int length = fileInput.tellg();
-    fileInput.seekg (0, fileInput.beg);
-	getline(fileInput,line);
-	istringstream iss(line);
-	int pisos, L;
-	iss >> pisos >> L;
-
-	grafo pabellon;
-
-	int pisoDe,posDe,pisoA,posA;
-
-	int P = (length-3)/8;								//Magia		//Dude, wtf
-
-	pabellon.rgrafo(pisos,L+1,P);
-
-	while(getline(fileInput, line, ';')){
-		istringstream iss(line);
-		iss >> pisoDe >> posDe >> pisoA >> posA;
-		pabellon.insertarPort(pisoDe, posDe, pisoA, posA);
-	}
-	pabellon.printGraf();
-
-	pabellon.bfs(0); //Corro BFS desde la raiz
-	int d = pabellon.distObj();	//Pregunto la distancia al último nodo, el objetivo
-	cout << d << endl;
-
 	ofstream out(fileOut.c_str());
-	out << d;
+	
+	while(getline(fileInput,line)){
+		istringstream iss(line);
+		int pisos, L;
+		iss >> pisos >> L;
+
+		grafo pabellon;
+		int pisoDe,posDe,pisoA,posA;
+
+		getline(fileInput,line);
+		int P=0;
+		if(line.size()>=7){
+			P = 1 + (line.size()-7)/9;
+		}
+
+		pabellon.rgrafo(pisos,L+1,P);
+
+		istringstream is1(line);
+		int pyCom;
+		while(P > 0){
+			is1 >> pisoDe;
+			is1 >> posDe;
+			is1 >> pisoA;
+			is1 >> posA;
+			pabellon.insertarPort(pisoDe, posDe, pisoA, posA);
+			P--;
+			is1.seekg(is1.tellg()+=2);
+		}
+		pabellon.printGraf();
+
+		pabellon.bfs(0); //Corro BFS desde la raiz
+		int d = pabellon.distObj();	//Pregunto la distancia al último nodo, el objetivo
+		cout << d << endl;
+
+		out << d << endl;
+	}
 
 	//FILE* out; out = fopen(fileOut.c_str(),"w");
 	//fprintf(out, "%d\n", d);
