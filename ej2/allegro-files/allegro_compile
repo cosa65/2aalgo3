@@ -1,4 +1,0 @@
-g++ example.cpp -o example -lalleg 			para allegro 4
-
-
-gcc allegro2.cpp -o allegro2 $(pkg-config --libs allegro-5.0)		para allegro 5

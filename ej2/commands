@@ -1,4 +1,0 @@
-#b main
-b ej2.h:grafo::bfs
-r tests/3x3.in tests/3x3.out
-#r moremoremore

@@ -32,11 +32,11 @@ void ejercicio2(string input, string fileOut){
 			P--;
 			is1.seekg(is1.tellg()+=2);
 		}
-		pabellon.printGraf();
+		//pabellon.printGraf();
 
 		pabellon.bfs(0); //Corro BFS desde la raiz
 		int d = pabellon.distObj();	//Pregunto la distancia al último nodo, el objetivo
-		cout << d << endl;
+		//cout << d << endl;
 
 		out << d << endl;
 	}
