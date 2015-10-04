@@ -1,1 +1,0 @@
-cgdb --quiet --command=commands --args ej2
