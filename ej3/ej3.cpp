@@ -11,18 +11,16 @@
 #include <sstream>
 #include <sys/time.h>
 
-//esto deberia recibir un grafo guachina
 //unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
 unsigned int sumaMinima(Grafo g){
   unsigned int res = 0;
 
   priority_queue<Arista, vector<Arista>, greater<Arista> > maxAristas;
   //set<Arista>::iterator it = g.dameAristas();
-  cout << "jare" << endl;
-  for (set<Arista>::iterator it = g.dameAristas().begin() ; it != g.dameAristas().end(); ++it) { //guardo las aristas en un maxHeap segun su peso
+  set<Arista> aristas = g.dameAristas();
+  for (set<Arista>::iterator it = aristas.begin() ; it != aristas.end(); ++it) { //guardo las aristas en un maxHeap segun su peso
     maxAristas.push(*it);
   }
-  cout << "jare" << endl;
 
   UnionFind uf(g.cantVertices());
   Arista auxArista;
@@ -32,6 +30,7 @@ unsigned int sumaMinima(Grafo g){
     if (uf.mismoRep(auxArista.vertice1(), auxArista.vertice2())){
     //si los representantes son iguales, entonces es un peso que tengo que añadir a la suma minima
       res += auxArista.damePeso();
+      //cout << res << endl;
     } else {
     //si no son iguales, tengo que agregar la arista y unir a los arboles
       uf.unir(auxArista.vertice1(), auxArista.vertice2()); //uno las dos componentes conexas
@@ -87,7 +86,7 @@ void evaluarTests(string fIn, string fOut/*, string fWrite*/){
     if (res == resEsperado){
       cout << "Pasó el test " << numTest << ". La suma mínima es: " << res << endl; 
     } else {
-      cout << "Falló el test" << numTest << ". Obtuve " << res << "debería tener " << resEsperado << endl;
+      cout << " Falló el test " << numTest << ". Obtuve " << res << " debería tener " << resEsperado << endl;
     }
     numTest++;
   }

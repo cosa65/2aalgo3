@@ -11,9 +11,9 @@ class Arista {
     
     Arista();
     Arista(Vertice, Vertice, int); 
-    int damePeso(); 
-    Vertice vertice1();
-    Vertice vertice2(); 
+    int damePeso() const; 
+    Vertice vertice1() const;
+    Vertice vertice2() const; 
 
     bool operator <(Arista a) const;
     bool operator >(Arista a) const;

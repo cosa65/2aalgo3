@@ -8,15 +8,15 @@ Arista::Arista(Vertice vertice1, Vertice vertice2, int p){
   peso = p;
 }
 
-int Arista::damePeso(){
+int Arista::damePeso() const{
   return peso;
 }
 
-Vertice Arista::vertice1(){
+Vertice Arista::vertice1() const{
   return v1;
 }
 
-Vertice Arista::vertice2(){
+Vertice Arista::vertice2() const{
   return v2;
 }
 

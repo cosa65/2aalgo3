@@ -4,7 +4,6 @@ Grafo::Grafo(){}
 
 void Grafo::agregarVertice(Vertice v){
   vertices.insert(v);
-  tam += 1;
 }
 
 void Grafo::agregarArista(Vertice v1, Vertice v2, int peso){
@@ -21,7 +20,7 @@ set<Arista> Grafo::dameAristas(){
 }
 
 unsigned int Grafo::cantVertices(){
-  return tam;
+  return vertices.size();
 }
 
 //int main() {
