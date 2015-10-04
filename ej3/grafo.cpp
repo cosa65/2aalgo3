@@ -12,14 +12,18 @@ void Grafo::agregarArista(Vertice v1, Vertice v2, int peso){
   aristas.insert(a);
 }
 
-set<Vertice>::iterator Grafo::vertices(){
+set<Vertice>::iterator Grafo::dameVertices(){
   return vertices.begin();
 }
 
-set<Arista>::iterator Grafo::aristas(){
-  return aristas.begin();
+set<Arista> Grafo::dameAristas(){
+  return aristas;
 }
 
-unsigned int cantVertices(){
+unsigned int Grafo::cantVertices(){
   return tam;
 }
+
+//int main() {
+//  return 0;
+//}

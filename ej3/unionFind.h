@@ -1,5 +1,8 @@
+#ifndef UNIONFIND_H_
+#define UNIONFIND_H_
+
 #include <vector>
-#include "arista.cpp"
+#include "grafo.cpp"
 #include <cstddef>
 
 using namespace std;
@@ -39,3 +42,5 @@ class UnionFind {
  // vector<Nodo*> conjuntos;
 
 };
+
+#endif

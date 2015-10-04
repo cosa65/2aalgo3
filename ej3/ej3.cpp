@@ -12,18 +12,22 @@
 #include <sys/time.h>
 
 //esto deberia recibir un grafo guachina
-unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
+//unsigned int sumaMinima(set<Arista> aristas, set<Vertice> vertices){
+unsigned int sumaMinima(Grafo g){
   unsigned int res = 0;
 
   priority_queue<Arista, vector<Arista>, greater<Arista> > maxAristas;
-  for (set<Arista>::iterator it = aristas.begin(); it != aristas.end(); ++it){ //guardo las aristas en un maxHeap segun su peso
+  //set<Arista>::iterator it = g.dameAristas();
+  cout << "jare" << endl;
+  for (set<Arista>::iterator it = g.dameAristas().begin() ; it != g.dameAristas().end(); ++it) { //guardo las aristas en un maxHeap segun su peso
     maxAristas.push(*it);
   }
+  cout << "jare" << endl;
 
-  UnionFind uf(vertices.size());
+  UnionFind uf(g.cantVertices());
   Arista auxArista;
   int size = maxAristas.size();
-  for (int i = 0; i < size; ++i){ //recorro todas las aristas
+  for (int i = 0; i < size; ++i) { //recorro todas las aristas
     auxArista = maxAristas.top();
     if (uf.mismoRep(auxArista.vertice1(), auxArista.vertice2())){
     //si los representantes son iguales, entonces es un peso que tengo que añadir a la suma minima
@@ -56,21 +60,26 @@ void evaluarTests(string fIn, string fOut/*, string fWrite*/){
   while (getline (fileData, line)){ //toma una linea del input
     istringstream iss(line); //inicializa una linea auxiliar con la anterior
 
-    set<Arista> aristas;
-    set<Vertice> vertices;
+    //set<Arista> aristas;
+    //set<Vertice> vertices;
+    Grafo g;
 
     while (getline (iss, s, ';')){ //pone en s los valores hasta el caracter ";"
       istringstream is(s); //inicializa un auxiliar con los valores que leyo en la anterior
       is >> v1; //guarda primer valor en v1 y mueve puntero
       is >> v2;
       is >> peso;
-      a = Arista(v1, v2, peso); 
-      aristas.insert(a);
-      vertices.insert(v1);
-      vertices.insert(v2);
+      g.agregarArista(v1, v2, peso);
+      g.agregarVertice(v1);
+      g.agregarVertice(v2);
+      //a = Arista(v1, v2, peso); 
+      //aristas.insert(a);
+      //vertices.insert(v1);
+      //vertices.insert(v2);
     }
 
-    unsigned int res = sumaMinima(aristas, vertices);
+    //unsigned int res = sumaMinima(aristas, vertices);
+    unsigned int res = sumaMinima(g);
 
     getline (fileResult, line);
     resEsperado = atoi(line.c_str());

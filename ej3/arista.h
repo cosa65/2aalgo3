@@ -1,3 +1,6 @@
+#ifndef ARISTA_H_
+#define ARISTA_H_
+
 using namespace std;
 
 typedef unsigned int Vertice;
@@ -22,3 +25,4 @@ class Arista {
 
 };
 
+#endif
