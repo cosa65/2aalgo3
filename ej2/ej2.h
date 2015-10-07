@@ -10,7 +10,7 @@
 using namespace std;
 
 enum color {blanco,negro,gris};
-enum {inf = numeric_limits<int>::max() };
+enum {inf = -1 };
 
 class grafo{
 public:
