@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -std=c++11 -o
 EFLAGS = -g
 
-BINARIES = ej3
+BINARIES = ej1 ej2 ej3
 
 .PHONY: ej1 ej2 ej3
 

@@ -10,7 +10,22 @@
 #include <sys/time.h>
 
 
+timeval start, end;
+double acum = 0;
+
+void init_time() {
+  gettimeofday(&start, NULL);
+}
+
+double get_time() {
+  gettimeofday(&end, NULL);
+  return (1000000*(end.tv_sec-start.tv_sec) + (end.tv_usec-start.tv_usec))/1000000.0;
+}
+
+//Funciones y datos utilizados para la toma de tiempos
+
 int ejUno(std::vector<int> conexiones, std::vector<std::vector<int> > pisos) {
+  init_time();
   int n = conexiones.size();
   int max = 0;
   for (int i = 1 ; i < n ; i++) {
@@ -19,9 +34,11 @@ int ejUno(std::vector<int> conexiones, std::vector<std::vector<int> > pisos) {
         if (max < conexiones[j])
           max = conexiones[j];
       }
-      conexiones[i] = max + 1;
     }
+    conexiones[i] = max + 1;
+    max = 0;
   }
+  acum += get_time();
   return conexiones[n-1];
 }
 
@@ -67,31 +84,41 @@ int evaluarTests(std::string fileTestData, std::string fileTestResult, std::stri
     }
 
 
-    int res = ejUno(conexiones, pisos);
-    std::cout << "Matriz adyacencia: " << std::endl;
-    for (int i = 0 ; i < cant_pisos ; i++) {
-      for (int j = 0 ; j < cant_pisos ; j++) {
-        std::cout << " " << pisos[i][j] << " ";
-      }
-      std::cout << std::endl;
+    for (int k = 0 ; k < 100 ; k++) {
+      int res = ejUno(conexiones, pisos);
     }
 
-    getline (fileResult, line);
+    double prom = acum/100;
+    fileWrite << "Test numero: " << i << " cantidad de pisos: " << cant_pisos << std::endl;
+    fileWrite << std::fixed << acum << std::endl;
+    fileWrite << std::fixed << prom << std::endl;
+    acum = 0;
+
+
+    //std::cout << "Matriz adyacencia: " << std::endl;
+    //for (int i = 0 ; i < cant_pisos ; i++) {
+    //  for (int j = 0 ; j < cant_pisos ; j++) {
+    //    std::cout << " " << pisos[i][j] << " ";
+    //  }
+    //  std::cout << std::endl;
+    //}
+
+    //getline (fileResult, line);
 
     // Lei una linea del archivo de resultados
     // y pregunto si ya termine de evaluar todos los tests
 
-    int resTest = atoi(line.c_str());
-    // convierto a int
+    //int resTest = atoi(line.c_str());
+    //// convierto a int
 
-    if (res == resTest) {
-      std::cout << "Paso el test " << i << ". Felicitaciones!" << std::endl;
-    } else {
-      std::cout << "Fallo el test " << i << ". :(" << std::endl;
-      std::cout << "Obtuve " << res << " deberia tener " << resTest << std::endl;
-    }
+    //if (res == resTest) {
+    //  std::cout << "Paso el test " << i << ". Felicitaciones!" << std::endl;
+    //} else {
+    //  std::cout << "Fallo el test " << i << ". :(" << std::endl;
+    //  std::cout << "Obtuve " << res << " deberia tener " << resTest << std::endl;
+    //}
 
-    i++;
+    //i++;
 
   }
   return 0;
