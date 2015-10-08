@@ -1,9 +1,9 @@
 Test numero: 1 cantidad de pisos: 10
 0.000043
-0.000000
+0.0000009
 Test numero: 1 cantidad de pisos: 20
 0.000137
-0.000001
+0.000002
 Test numero: 1 cantidad de pisos: 30
 0.000294
 0.000003

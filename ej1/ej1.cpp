@@ -27,7 +27,11 @@ double get_time() {
 int ejUno(std::vector<int> conexiones, std::vector<std::vector<int> > pisos) {
   init_time();
   int n = conexiones.size();
-  int max = 0;
+  int max = -1;
+  // Instancio max en -1. Como todo el vector de conexiones 
+  // tiene -1 en todas las posiciones distintas de cero
+  // al establecer el menor estricto en la segunda guarda del if
+  // me aseguro de no modificar los pisos a los cuales no puedo llegar desde el primero
   for (int i = 1 ; i < n ; i++) {
     for (int j = 0 ; j < i ; j++) {
       if (pisos[j][i] == 1) {
@@ -35,8 +39,12 @@ int ejUno(std::vector<int> conexiones, std::vector<std::vector<int> > pisos) {
           max = conexiones[j];
       }
     }
-    conexiones[i] = max + 1;
-    max = 0;
+    if (max != -1)
+    // Si modifique el piso al cual estoy evaluando en esta iteracion
+    // significa que puedo llegar
+      conexiones[i] = max + 1;
+    max = -1;
+    // Reseteo el valor del maximo para la proxima iteracion
   }
   acum += get_time();
   return conexiones[n-1];
@@ -63,6 +71,8 @@ int evaluarTests(std::string fileTestData, std::string fileTestResult, std::stri
     for(int i = 0 ; i < cant_pisos ; i++)
       conexiones[i] = -1;
 
+    conexiones[0] = 0;
+
     std::vector<std::vector<int> > pisos(cant_pisos, std::vector<int>(cant_pisos));
 
     for (int i = 0 ; i < cant_pisos ; i++) {
@@ -84,15 +94,15 @@ int evaluarTests(std::string fileTestData, std::string fileTestResult, std::stri
     }
 
 
-    for (int k = 0 ; k < 100 ; k++) {
+    //for (int k = 0 ; k < 100 ; k++) {
       int res = ejUno(conexiones, pisos);
-    }
+    //}
 
-    double prom = acum/100;
-    fileWrite << "Test numero: " << i << " cantidad de pisos: " << cant_pisos << std::endl;
-    fileWrite << std::fixed << acum << std::endl;
-    fileWrite << std::fixed << prom << std::endl;
-    acum = 0;
+    //double prom = acum/100;
+    //fileWrite << "Test numero: " << i << " cantidad de pisos: " << cant_pisos << std::endl;
+    //fileWrite << std::fixed << acum << std::endl;
+    //fileWrite << std::fixed << prom << std::endl;
+    //acum = 0;
 
 
     //std::cout << "Matriz adyacencia: " << std::endl;
@@ -103,22 +113,22 @@ int evaluarTests(std::string fileTestData, std::string fileTestResult, std::stri
     //  std::cout << std::endl;
     //}
 
-    //getline (fileResult, line);
+    getline (fileResult, line);
 
     // Lei una linea del archivo de resultados
     // y pregunto si ya termine de evaluar todos los tests
 
-    //int resTest = atoi(line.c_str());
+    int resTest = atoi(line.c_str());
     //// convierto a int
 
-    //if (res == resTest) {
-    //  std::cout << "Paso el test " << i << ". Felicitaciones!" << std::endl;
-    //} else {
-    //  std::cout << "Fallo el test " << i << ". :(" << std::endl;
-    //  std::cout << "Obtuve " << res << " deberia tener " << resTest << std::endl;
-    //}
+    if (res == resTest) {
+      std::cout << "Paso el test " << i << ". Felicitaciones!" << std::endl;
+    } else {
+      std::cout << "Fallo el test " << i << ". :(" << std::endl;
+      std::cout << "Obtuve " << res << " deberia tener " << resTest << std::endl;
+    }
 
-    //i++;
+    i++;
 
   }
   return 0;
