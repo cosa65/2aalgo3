@@ -61,7 +61,7 @@ void ejercicio2(string input, string fileOut){
 		//cout << d << endl;
 
 		out << "Cantidad de Pisos " << pisos << " tiempo: ";
-		out << prom << endl;
+		out << fixed << prom << endl;
 	}
 
 	//FILE* out; out = fopen(fileOut.c_str(),"w");
