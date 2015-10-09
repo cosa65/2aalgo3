@@ -5,10 +5,13 @@
 # 	./mejorCaso mejor$i $i $j
 # done
 
+g++ -std=c++11 mejorCaso.cpp -o mejorCaso
+mkdir ../mejorCaso_in
+
 COUNTER=1
 while [  $COUNTER -lt 2000 ]; do
 	j=$((COUNTER-1))
 	echo "Generando mejor caso para $COUNTER pisos"
-	./mejorCaso mejor$COUNTER $COUNTER $j
+	./mejorCaso ../mejorCaso_in/mejor$COUNTER $COUNTER $j
 	let COUNTER=COUNTER+100
 done

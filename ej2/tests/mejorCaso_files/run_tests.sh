@@ -1,4 +1,5 @@
 g++ -std=c++11 ej2Timed.cpp -o ej2Timed
+mkdir ../mejorCaso_out
 
 for i in $(ls ../mejorCaso_in)
 do

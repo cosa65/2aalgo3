@@ -1,5 +1,5 @@
 g++ -std=c++11 ej2Timed.cpp -o ej2Timed
-./ej2Timed ../casoRandom_in/random10 ../casoRandom_out/random10
+mkdir ../casoRandom_out
 
 for i in $(ls ../casoRandom_in)
 do

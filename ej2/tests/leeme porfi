@@ -1,0 +1,5 @@
+Para probar los tests:
+	
+	1) Correr el ejecutable generar_inputs.sh
+	2) Correr el ejecutable run_tests.sh
+	3) Enjoy!
