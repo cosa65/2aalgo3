@@ -16,13 +16,13 @@ class grafo{
 public:
 	class nodo; //FwD
 	grafo();
-	void rgrafo(int, int, int);
-	void insertarPort(int pisoDe,int posDe,int pisoA,int posA);
+	void rgrafo(int pisos, int L, int P);											//Genera el grafo, como uno sin portales.
+	void insertarPort(int pisoDe,int posDe,int pisoA,int posA);						//Inserta un portal en el grafo.
 	void printList(int i);
 	void printL(int i);
 	void printGraf();
 	int distObj();
-	void bfs( int init );
+	void bfs( int init );															//Ejecuta el BFS modificado, empezando por el nodo "init".
 
 	class nodo{
 	public:
@@ -139,15 +139,15 @@ void grafo::printGraf(){
 
 void grafo::insertarPort(int pisoDe,int posDe,int pisoA,int posA){
 	nodo portal = nodo();
-	int pos = (_pisos*_L) + _portAct;
+	int pos = (_pisos*_L) + _portAct;								//Defino la posicion del nuevo nodo.
 	portal.setNum(pos);
 	_portAct++;
-	nodos[pos] = portal;						//Creo los espacios nuevo e inserto el nodo nuevo
+	nodos[pos] = portal;						
 
-	lista[pisoDe*_L + posDe].push_back(&nodos[pos]);
+	lista[pisoDe*_L + posDe].push_back(&nodos[pos]);				//Agrego las aristas correspondientes en los nodos que son conectados.
 	lista[pisoA*_L + posA].push_back(&nodos[pos]);
 	list<nodo*> nueva;
-	nueva.push_back(&nodos[pisoDe*_L + posDe]);
+	nueva.push_back(&nodos[pisoDe*_L + posDe]);						//Agrego las aristas correspondientes en el nodo nuevo (el portal).
 	nueva.push_back(&nodos[pisoA*_L + posA]);
 	lista[pos] = nueva;
 }
