@@ -82,25 +82,25 @@ void evaluarTests(string fIn, string fOut, string fWrite){
       g.agregarVertice(v2);
     }
 
-    for (int k = 0 ; k < 100 ; ++k) {
+    //for (int k = 0 ; k < 100 ; ++k) {
       unsigned int res = sumaMinima(g);
-    }
+    //}
 
 
-    double promedio = acum / 100;
-    fileWrite << "Test número: " << numTest << endl;
-    fileWrite << "Tiempo promedio: " << fixed << promedio << endl;
-    acum = 0;
+    //double promedio = acum / 100;
+    //fileWrite << "Test número: " << numTest << endl;
+    //fileWrite << "Tiempo promedio: " << fixed << promedio << endl;
+    //acum = 0;
 
     
-  //  getline (fileResult, line);
-  //  resEsperado = atoi(line.c_str());
+    getline (fileResult, line);
+    resEsperado = atoi(line.c_str());
 
-  //  if (res == resEsperado){
-  //    cout << "Pasó el test " << numTest << ". La suma mínima es: " << res << endl; 
-  //  } else {
-  //    cout << " Falló el test " << numTest << ". Obtuve " << res << " debería tener " << resEsperado << endl;
-  //  }
+    if (res == resEsperado){
+      cout << "Pasó el test " << numTest << ". La suma mínima es: " << res << endl; 
+    } else {
+      cout << " Falló el test " << numTest << ". Obtuve " << res << " debería tener " << resEsperado << endl;
+    }
     numTest++;
   }
 }
