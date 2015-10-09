@@ -94,15 +94,15 @@ int evaluarTests(std::string fileTestData, std::string fileTestResult, std::stri
     }
 
 
-    //for (int k = 0 ; k < 100 ; k++) {
+    for (int k = 0 ; k < 100 ; k++) {
       int res = ejUno(conexiones, pisos);
-    //}
+    }
 
-    //double prom = acum/100;
-    //fileWrite << "Test numero: " << i << " cantidad de pisos: " << cant_pisos << std::endl;
-    //fileWrite << std::fixed << acum << std::endl;
-    //fileWrite << std::fixed << prom << std::endl;
-    //acum = 0;
+    double prom = acum/100;
+    //FileWrite << "Test numero: " << i << " cantidad de pisos: " << cant_pisos << std::endl;
+    //FileWrite << std::fixed << acum << std::endl;
+    fileWrite << std::fixed << prom << std::endl;
+    acum = 0;
 
 
     //std::cout << "Matriz adyacencia: " << std::endl;
@@ -113,21 +113,22 @@ int evaluarTests(std::string fileTestData, std::string fileTestResult, std::stri
     //  std::cout << std::endl;
     //}
 
-    getline (fileResult, line);
+    //getline (fileResult, line);
 
-    // Lei una linea del archivo de resultados
-    // y pregunto si ya termine de evaluar todos los tests
+    //// Lei una linea del archivo de resultados
+    //// y pregunto si ya termine de evaluar todos los tests
 
-    int resTest = atoi(line.c_str());
-    //// convierto a int
+    //int resTest = atoi(line.c_str());
+    ////// convierto a int
 
-    if (res == resTest) {
-      std::cout << "Paso el test " << i << ". Felicitaciones!" << std::endl;
-    } else {
-      std::cout << "Fallo el test " << i << ". :(" << std::endl;
-      std::cout << "Obtuve " << res << " deberia tener " << resTest << std::endl;
-    }
+    //if (res == resTest) {
+    //  std::cout << "Paso el test " << i << ". Felicitaciones!" << std::endl;
+    //} else {
+    //  std::cout << "Fallo el test " << i << ". :(" << std::endl;
+    //  std::cout << "Obtuve " << res << " deberia tener " << resTest << std::endl;
+    //}
 
+    std::cout << i << std::endl;
     i++;
 
   }

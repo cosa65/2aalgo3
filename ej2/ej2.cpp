@@ -8,7 +8,7 @@ void ejercicio2(string input, string fileOut){
 	while(getline(fileInput,line)){
 		istringstream iss(line);
 		int pisos, L;
-		iss >> pisos >> L;
+		iss >> pisos >> L;						//Recibe N (pisos) y L
 
 		grafo pabellon;
 		int pisoDe,posDe,pisoA,posA;
@@ -16,10 +16,10 @@ void ejercicio2(string input, string fileOut){
 		getline(fileInput,line);
 		int P=0;
 		if(line.size()>=7){
-			P = 1 + (line.size()-7)/9;
+			P = 1 + (line.size()-7)/9;			//Defino la cantidad de portales que voy a agregar (a partir del tamaño de la línea)
 		}
 
-		pabellon.rgrafo(pisos,L+1,P);
+		pabellon.rgrafo(pisos,L+1,P);			
 
 		istringstream is1(line);
 		int pyCom;
@@ -28,7 +28,7 @@ void ejercicio2(string input, string fileOut){
 			is1 >> posDe;
 			is1 >> pisoA;
 			is1 >> posA;
-			pabellon.insertarPort(pisoDe, posDe, pisoA, posA);
+			pabellon.insertarPort(pisoDe, posDe, pisoA, posA);		//Inserto los portales.
 			P--;
 			is1.seekg(is1.tellg()+=2);
 		}
