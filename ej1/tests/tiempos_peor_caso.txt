@@ -1,57 +1,20 @@
-Test numero: 1 cantidad de pisos: 10
-0.000238
-0.000002
-Test numero: 1 cantidad de pisos: 20
-0.000861
-0.000009
-Test numero: 1 cantidad de pisos: 30
-0.001846
-0.000018
-Test numero: 1 cantidad de pisos: 40
-0.002662
-0.000027
-Test numero: 1 cantidad de pisos: 50
-0.003923
-0.000039
-Test numero: 1 cantidad de pisos: 60
-0.005047
-0.000050
-Test numero: 1 cantidad de pisos: 70
-0.006118
-0.000061
-Test numero: 1 cantidad de pisos: 80
-0.005469
-0.000055
-Test numero: 1 cantidad de pisos: 90
-0.005718
-0.000057
-Test numero: 1 cantidad de pisos: 100
-0.007043
-0.000070
-Test numero: 1 cantidad de pisos: 200
-0.024809
-0.000248
-Test numero: 1 cantidad de pisos: 300
-0.046603
-0.000466
-Test numero: 1 cantidad de pisos: 400
-0.086230
-0.000862
-Test numero: 1 cantidad de pisos: 500
-0.132538
-0.001325
-Test numero: 1 cantidad de pisos: 600
-0.187943
-0.001879
-Test numero: 1 cantidad de pisos: 700
-0.253879
-0.002539
-Test numero: 1 cantidad de pisos: 800
-0.337174
-0.003372
-Test numero: 1 cantidad de pisos: 900
-0.435076
-0.004351
-Test numero: 1 cantidad de pisos: 1000
-0.541186
-0.005412
+0.000052
+0.000128
+0.000220
+0.000311
+0.000322
+0.000457
+0.000621
+0.000821
+0.001039
+0.001284
+0.001562
+0.001870
+0.002170
+0.002561
+0.002955
+0.003373
+0.003763
+0.004245
+0.004817
+0.005401

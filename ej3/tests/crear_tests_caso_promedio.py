@@ -13,11 +13,12 @@ def bfs(graph, start):
 f = open('tests_caso_promedio.in', 'w')
 a = 50
 graph = {}
+k = 0
 while (a <= 1000): 
   for i in range(0, a+1):
     graph[i] = set()
   connec = ''
-  for j in range(0, (a*(a-1)/2)):
+  for j in range(0, (a*(a-10)/2)):
     vertex1 = random.randint(0, a)
     vertex2 = random.randint(0, a)
     while (vertex1 == vertex2):
@@ -45,4 +46,7 @@ while (a <= 1000):
 
     connec = connec + '\n'
     f.write(connec)
-    a += 50 
+    k += 1
+    if k == 3:
+      a += 50 
+      k = 0

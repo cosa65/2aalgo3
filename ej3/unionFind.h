@@ -30,10 +30,10 @@ class UnionFind {
       Nodo* siguiente;
       
       Nodo(unsigned int d) : dato(d), set(NULL), siguiente(NULL) {}; 
-      //~Nodo() {
-      //  set = NULL;
-      //  siguiente = NULL;
-      //}
+    //  ~Nodo() {
+    //    set = NULL;
+    //    siguiente = NULL;
+    //  }
     };
     struct Conjunto {
       Nodo* primero;

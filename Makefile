@@ -14,8 +14,8 @@ all: $(BINARIES)
 ej1: ej1/ej1.cpp
 	$(CC) ej1/ej1.cpp $(CFLAGS) exj1
 
-#ej2: ej2/mediana.cpp
-#	$(CC) ej2/mediana.cpp $(CFLAGS) exj2
+ej2: ej2/ej2.cpp
+	$(CC) ej2/ej2.cpp $(CFLAGS) exj2
 #
 ej3: ej3/ej3.cpp ej3/unionFind.cpp
 	$(CC) ej3/ej3.cpp $(CFLAGS) exj3

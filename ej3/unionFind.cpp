@@ -35,11 +35,11 @@ void UnionFind::unir(Vertice x, Vertice y)
   Conjunto* c2 = conjuntos[representantes[y]];
   if (c1->cardinal >= c2->cardinal){
     representantes[y] = representantes[x];
-    conjuntos[y] = NULL;
+    //conjuntos[y] = NULL;
     //delete(conjuntos[y]);
   } else {
     representantes[x] = representantes[y];
-    conjuntos[x] = NULL;
+    //conjuntos[x] = NULL;
     //delete(conjuntos[x]);
   }
   link(c1, c2);    
@@ -66,7 +66,7 @@ void UnionFind::link(Conjunto* c1, Conjunto* c2){
     c1->ultimo = c2->ultimo;
     c1->cardinal += c2->cardinal;
     c2->primero = NULL;
-    delete(c2);
+    //delete(c2);
   } else {
 //si no, uno c1 al segundo conjunto
     c2->ultimo->siguiente = c1->primero;
@@ -80,6 +80,6 @@ void UnionFind::link(Conjunto* c1, Conjunto* c2){
     c2->ultimo = c1->ultimo;
     c2->cardinal += c1->cardinal;
     c1->primero = NULL;
-    delete(c1);
+    //delete(c1);
   }
 }
