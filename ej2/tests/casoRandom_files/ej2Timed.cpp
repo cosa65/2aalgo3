@@ -46,7 +46,7 @@ void ejercicio2(string input, string fileOut){
 			is1.seekg(is1.tellg()+=2);
 		}
 		//pabellon.printGraf();
-		int prom=0;
+		double prom = 0;
 		for(int r=0;r<20;r++){
 
 			init_time();
@@ -60,8 +60,11 @@ void ejercicio2(string input, string fileOut){
 		int d = pabellon.distObj();	//Pregunto la distancia al último nodo, el objetivo
 		//cout << d << endl;
 
-		out << "Cantidad de Pisos " << pisos << " tiempo: ";
+		out << "Archivo " << input << endl;
+		out << "Cantidad de Nodos: " << pabellon.size() << endl;
 		out << fixed << prom << endl;
+		out.close();
+
 	}
 
 	//FILE* out; out = fopen(fileOut.c_str(),"w");

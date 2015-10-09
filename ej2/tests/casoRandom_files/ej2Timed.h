@@ -23,6 +23,7 @@ public:
 	void printGraf();
 	int distObj();
 	void bfs( int init );
+	int size();
 
 	class nodo{
 	public:
@@ -62,6 +63,11 @@ private:
 grafo::nodo::nodo(){
 	_padre = NULL;
 	_col = blanco;
+}
+
+int grafo::size()
+{
+	return nodos.size();
 }
 
 void grafo::nodo::rnodo(int piso,int posicion, int L){
