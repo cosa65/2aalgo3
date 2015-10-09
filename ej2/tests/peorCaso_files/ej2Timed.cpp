@@ -1,4 +1,17 @@
-#include "ej2.h"
+#include "ej2Timed.h"
+#include <sys/time.h>
+
+timeval startt,endd;
+void init_time()
+{
+    gettimeofday(&startt,NULL);
+}
+
+double get_time()
+{
+    gettimeofday(&endd,NULL);
+    return (1000000*(endd.tv_sec-startt.tv_sec)+(endd.tv_usec-startt.tv_usec))/1000000.0;
+}
 
 void ejercicio2(string input, string fileOut){
 	string line;
@@ -8,7 +21,7 @@ void ejercicio2(string input, string fileOut){
 	while(getline(fileInput,line)){
 		istringstream iss(line);
 		int pisos, L;
-		iss >> pisos >> L;						//Recibe N (pisos) y L
+		iss >> pisos >> L;
 
 		grafo pabellon;
 		int pisoDe,posDe,pisoA,posA;
@@ -16,10 +29,10 @@ void ejercicio2(string input, string fileOut){
 		getline(fileInput,line);
 		int P=0;
 		if(line.size()>=7){
-			P = 1 + (line.size()-7)/9;			//Defino la cantidad de portales que voy a agregar (a partir del tamaño de la línea)
+			P = 1 + (line.size()-7)/9;
 		}
 
-		pabellon.rgrafo(pisos,L+1,P);			
+		pabellon.rgrafo(pisos,L+1,P);
 
 		istringstream is1(line);
 		int pyCom;
@@ -28,17 +41,30 @@ void ejercicio2(string input, string fileOut){
 			is1 >> posDe;
 			is1 >> pisoA;
 			is1 >> posA;
-			pabellon.insertarPort(pisoDe, posDe, pisoA, posA);		//Inserto los portales.
+			pabellon.insertarPort(pisoDe, posDe, pisoA, posA);
 			P--;
 			is1.seekg(is1.tellg()+=2);
 		}
 		//pabellon.printGraf();
+		double prom = 0;
+		for(int r=0;r<20;r++){
 
-		pabellon.bfs(0); //Corro BFS desde la raiz
+			init_time();
+			pabellon.bfs(0); //Corro BFS desde la raiz
+			double tiempo = get_time();
+			prom+=tiempo;
+		}
+		
+		prom = prom/20;
+
 		int d = pabellon.distObj();	//Pregunto la distancia al último nodo, el objetivo
 		//cout << d << endl;
 
-		out << d << endl;
+		out << "Archivo " << input << endl;
+		out << "Cantidad de Nodos: " << pabellon.size() << endl;
+		out << fixed << prom << endl;
+		out.close();
+
 	}
 
 	//FILE* out; out = fopen(fileOut.c_str(),"w");
